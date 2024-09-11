@@ -1,0 +1,7 @@
+{
+  "client_id": "Client_Id_91265fcddd03a34e382f4e998c62adf2c33e3ad9",
+  "client_secret": "Client_Secret_fa76568770d82f45deef9cd94be2297d2b3caa1a",
+  "certificate": "D:\\bip2_comCerts\\bip\\certs\\certificadoHML.p12",
+  "sandbox": true,
+  "debug": false
+}
