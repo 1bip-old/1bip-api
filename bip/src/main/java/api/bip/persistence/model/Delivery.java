@@ -37,18 +37,8 @@ public class Delivery {
     private double valorTroco;
     private String qrCodeImage;
     private String copyAndPaste;
-    private Timestamp dataCriacao;
     private boolean entregaAtiva;
-
     private boolean estaExpandido;
-
-    public Timestamp getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Timestamp dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
 
     public boolean isEstaExpandido() {
         return estaExpandido;

@@ -14,7 +14,7 @@ public class DeliveryController {
     @Autowired
     private DeliveryService deliveryService;
 
-    @PostMapping()
+    @PostMapping("/inserir")
     public Delivery createEntrega(@RequestBody Delivery delivery) {
         return deliveryService.saveEntrega(delivery);
     }
@@ -31,13 +31,13 @@ public class DeliveryController {
     }
 
     // Endpoint para retornar todas as entregas
-    @GetMapping
+    @GetMapping("/entregas")
     public List<Delivery> getAllDeliveries() {
         return deliveryService.findAllDeliveries();
     }
 
     // Endpoint para retornar apenas entregas ativas
-    @GetMapping("/entregasAtivas")
+    @GetMapping("/entregas-ativas")
     public List<Delivery> getActiveDeliveries() {
         return deliveryService.findActiveDeliveries();
     }
