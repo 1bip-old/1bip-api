@@ -5,6 +5,8 @@ import api.bip.persistence.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/delivery")
 public class DeliveryController {
@@ -12,8 +14,31 @@ public class DeliveryController {
     @Autowired
     private DeliveryService deliveryService;
 
-    @PostMapping
+    @PostMapping()
     public Delivery createEntrega(@RequestBody Delivery delivery) {
         return deliveryService.saveEntrega(delivery);
+    }
+
+    @GetMapping("/{id}")
+    public Delivery getEntrega(@PathVariable Long id) {
+        return deliveryService.findEntregaById(id)
+                .orElseThrow(() -> new RuntimeException("Entrega não encontrada"));
+    }
+
+    @PutMapping("/{id}")
+    public Delivery updateEntrega(@PathVariable Long id, @RequestBody Delivery delivery) {
+        return deliveryService.updateEntrega(id, delivery);
+    }
+
+    // Endpoint para retornar todas as entregas
+    @GetMapping
+    public List<Delivery> getAllDeliveries() {
+        return deliveryService.findAllDeliveries();
+    }
+
+    // Endpoint para retornar apenas entregas ativas
+    @GetMapping("/entregasAtivas")
+    public List<Delivery> getActiveDeliveries() {
+        return deliveryService.findActiveDeliveries();
     }
 }

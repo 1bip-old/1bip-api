@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "delivery")
 public class Delivery {
@@ -35,6 +37,34 @@ public class Delivery {
     private double valorTroco;
     private String qrCodeImage;
     private String copyAndPaste;
+    private Timestamp dataCriacao;
+    private boolean entregaAtiva;
+
+    private boolean estaExpandido;
+
+    public Timestamp getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Timestamp dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public boolean isEstaExpandido() {
+        return estaExpandido;
+    }
+
+    public void setEstaExpandido(boolean estaExpandido) {
+        this.estaExpandido = estaExpandido;
+    }
+
+    public boolean isEntregaAtiva() {
+        return entregaAtiva;
+    }
+
+    public void setEntregaAtiva(boolean entregaAtiva) {
+        this.entregaAtiva = entregaAtiva;
+    }
 
     public Long getId() {
         return id;
