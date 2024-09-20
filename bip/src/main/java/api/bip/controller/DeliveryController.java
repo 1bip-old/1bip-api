@@ -15,18 +15,17 @@ public class DeliveryController {
     private DeliveryService deliveryService;
 
     @PostMapping("/inserir")
-    public Delivery createEntrega(@RequestBody Delivery delivery) {
+    public Delivery createDelivery(@RequestBody Delivery delivery) {
         return deliveryService.saveEntrega(delivery);
     }
 
-    @GetMapping("/{id}")
-    public Delivery getEntrega(@PathVariable Long id) {
-        return deliveryService.findEntregaById(id)
-                .orElseThrow(() -> new RuntimeException("Entrega não encontrada"));
+    @GetMapping("/get/{id}")
+    public Delivery getDelivery(@PathVariable Long id) {
+        return deliveryService.findEntregaById(id).orElseThrow(() -> new RuntimeException("Entrega não encontrada"));
     }
 
-    @PutMapping("/{id}")
-    public Delivery updateEntrega(@PathVariable Long id, @RequestBody Delivery delivery) {
+    @PutMapping("update/{id}")
+    public Delivery updateDelivery(@PathVariable Long id, @RequestBody Delivery delivery) {
         return deliveryService.updateEntrega(id, delivery);
     }
 

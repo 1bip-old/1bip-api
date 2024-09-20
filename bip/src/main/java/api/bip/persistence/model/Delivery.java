@@ -6,8 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.sql.Timestamp;
-
 @Entity
 @Table(name = "delivery")
 public class Delivery {
