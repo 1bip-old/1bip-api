@@ -59,4 +59,9 @@ public class DeliveryService {
             throw new RuntimeException("Entrega não encontrada para exclusão");
         }
     }
+    // Trazer apenas as entregas ativas por status
+    public List<Delivery> getDeliveriesByStatus(int statusId) {
+        return deliveryRepository.findDeliveriesByStatus(statusId);  // Método para buscar entregas ativas por status
+    }
+
 }

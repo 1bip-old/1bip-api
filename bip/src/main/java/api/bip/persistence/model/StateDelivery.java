@@ -14,6 +14,7 @@ public class StateDelivery {
     private Long id;
     private String descricao;
     private boolean ativo;
+    private boolean visivel;
 
     public Long getId() {
         return id;
@@ -37,5 +38,13 @@ public class StateDelivery {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public boolean isVisivel() {
+        return visivel;
+    }
+
+    public void setVisivel(boolean visivel) {
+        this.visivel = visivel;
     }
 }

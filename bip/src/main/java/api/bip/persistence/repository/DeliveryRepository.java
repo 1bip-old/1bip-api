@@ -119,4 +119,10 @@ public class DeliveryRepository {
         String sql = "DELETE FROM delivery WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    // Retornar apenas entregas ativas por status
+    public List<Delivery> findDeliveriesByStatus(int statusId) {
+        String sql = "SELECT * FROM delivery WHERE entrega_ativa = true AND status_entrega_id = ?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Delivery.class), statusId);
+    }
 }

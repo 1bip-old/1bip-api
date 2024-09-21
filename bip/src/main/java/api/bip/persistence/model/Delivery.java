@@ -13,7 +13,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String statusEntrega;
+    private Integer statusEntregaId;
     private boolean comRetorno;
     private String codigoPedido;
     private String codigoConfirmacao;
@@ -174,12 +174,12 @@ public class Delivery {
         this.codigoConfirmacao = codigoConfirmacao;
     }
 
-    public String getStatusEntrega() {
-        return statusEntrega;
+    public Integer getStatusEntregaId() {
+        return statusEntregaId;
     }
 
-    public void setStatusEntrega(String statusEntrega) {
-        this.statusEntrega = statusEntrega;
+    public void setStatusEntregaId(Integer statusEntregaId) {
+        this.statusEntregaId = statusEntregaId;
     }
 
     public String getClienteNome() {
