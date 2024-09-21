@@ -17,7 +17,7 @@ public class DeliveryRepository {
 
     // Inserir uma nova entrega
     public Delivery insertDelivery(Delivery delivery) {
-        String sql = "INSERT INTO delivery (status_entrega, com_retorno, codigo_pedido, codigo_confirmacao, estabelecimento_id, destino_id, entregador_id, cliente_nome, cliente_telefone, taxa_entrega_sugerida, taxa_entrega_aceita, valor_cotacao, cotacao_aceita_id, distancia_destino_km, confirmacao_entregador_id, confirmacao_estabelecimento_id, forma_pagamento, valor_pedido, valor_pago_cliente, valor_troco, qr_code_image, copy_and_paste, entrega_ativa, esta_expandido) " +
+        String sql = "INSERT INTO delivery (status_entrega_id, com_retorno, codigo_pedido, codigo_confirmacao, estabelecimento_id, destino_id, entregador_id, cliente_nome, cliente_telefone, taxa_entrega_sugerida, taxa_entrega_aceita, valor_cotacao, cotacao_aceita_id, distancia_destino_km, confirmacao_entregador_id, confirmacao_estabelecimento_id, forma_pagamento, valor_pedido, valor_pago_cliente, valor_troco, qr_code_image, copy_and_paste, entrega_ativa, esta_expandido) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
@@ -52,7 +52,7 @@ public class DeliveryRepository {
 
     // Atualizar uma entrega existente
     public Delivery updateDelivery(Delivery delivery) {
-        String sql = "UPDATE delivery SET status_entrega = ?, com_retorno = ?, codigo_pedido = ?, codigo_confirmacao = ?, estabelecimento_id = ?, destino_id = ?, entregador_id = ?, cliente_nome = ?, cliente_telefone = ?, taxa_entrega_sugerida = ?, taxa_entrega_aceita = ?, valor_cotacao = ?, cotacao_aceita_id = ?, distancia_destino_km = ?, confirmacao_entregador_id = ?, confirmacao_estabelecimento_id = ?, forma_pagamento = ?, valor_pedido = ?, valor_pago_cliente = ?, valor_troco = ?, qr_code_image = ?, copy_and_paste = ?, entrega_ativa = ?, esta_expandido = ? WHERE id = ?";
+        String sql = "UPDATE delivery SET status_entrega_id = ?, com_retorno = ?, codigo_pedido = ?, codigo_confirmacao = ?, estabelecimento_id = ?, destino_id = ?, entregador_id = ?, cliente_nome = ?, cliente_telefone = ?, taxa_entrega_sugerida = ?, taxa_entrega_aceita = ?, valor_cotacao = ?, cotacao_aceita_id = ?, distancia_destino_km = ?, confirmacao_entregador_id = ?, confirmacao_estabelecimento_id = ?, forma_pagamento = ?, valor_pedido = ?, valor_pago_cliente = ?, valor_troco = ?, qr_code_image = ?, copy_and_paste = ?, entrega_ativa = ?, esta_expandido = ? WHERE id = ?";
 
         jdbcTemplate.update(sql,
                 delivery.getStatusEntregaId(),

@@ -17,7 +17,7 @@ public class DeliveryService {
     // Inserir ou atualizar uma entrega
     public Delivery saveEntrega(Delivery delivery) {
         // Se o ID for nulo, será uma nova entrega
-        if (delivery.getId() == null) {
+        if (delivery.getId() == 0) {
             return deliveryRepository.insertDelivery(delivery);  // Método para inserir nova entrega
         } else {
             return deliveryRepository.updateDelivery(delivery);  // Método para atualizar uma entrega existente
