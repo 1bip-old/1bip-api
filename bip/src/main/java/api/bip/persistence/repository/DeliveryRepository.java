@@ -21,7 +21,7 @@ public class DeliveryRepository {
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql,
-                delivery.getStatusEntrega(),
+                delivery.getStatusEntregaId(),
                 delivery.isComRetorno(),
                 delivery.getCodigoPedido(),
                 delivery.getCodigoConfirmacao(),
@@ -55,7 +55,7 @@ public class DeliveryRepository {
         String sql = "UPDATE delivery SET status_entrega = ?, com_retorno = ?, codigo_pedido = ?, codigo_confirmacao = ?, estabelecimento_id = ?, destino_id = ?, entregador_id = ?, cliente_nome = ?, cliente_telefone = ?, taxa_entrega_sugerida = ?, taxa_entrega_aceita = ?, valor_cotacao = ?, cotacao_aceita_id = ?, distancia_destino_km = ?, confirmacao_entregador_id = ?, confirmacao_estabelecimento_id = ?, forma_pagamento = ?, valor_pedido = ?, valor_pago_cliente = ?, valor_troco = ?, qr_code_image = ?, copy_and_paste = ?, entrega_ativa = ?, esta_expandido = ? WHERE id = ?";
 
         jdbcTemplate.update(sql,
-                delivery.getStatusEntrega(),
+                delivery.getStatusEntregaId(),
                 delivery.isComRetorno(),
                 delivery.getCodigoPedido(),
                 delivery.getCodigoConfirmacao(),
