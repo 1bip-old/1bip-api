@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
-@Table(name = "status_entrega")
+@Table(name = "state_delivery")
 public class StateDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

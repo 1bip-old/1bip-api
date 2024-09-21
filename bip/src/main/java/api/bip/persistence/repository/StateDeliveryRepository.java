@@ -1,15 +1,21 @@
 package api.bip.persistence.repository;
 
 import api.bip.persistence.model.StateDelivery;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface StateDeliveryRepository extends JpaRepository<StateDelivery, Long> {
-    // Usando JPQL para customizar a consulta
-    @Query("SELECT s FROM StateDelivery s WHERE s.ativo = true")
-    List<StateDelivery> findActiveStateDeliveryRepository();
+public class StateDeliveryRepository {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public List<StateDelivery> findActiveStateDeliveryRepository() {
+        String sql = "SELECT * FROM state_delivery WHERE ativo = true";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StateDelivery.class));
+    }
 }

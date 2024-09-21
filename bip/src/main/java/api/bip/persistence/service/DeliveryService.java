@@ -14,30 +14,49 @@ public class DeliveryService {
     @Autowired
     private DeliveryRepository deliveryRepository;
 
+    // Inserir ou atualizar uma entrega
     public Delivery saveEntrega(Delivery delivery) {
-        return deliveryRepository.save(delivery);
+        // Se o ID for nulo, será uma nova entrega
+        if (delivery.getId() == null) {
+            return deliveryRepository.insertDelivery(delivery);  // Método para inserir nova entrega
+        } else {
+            return deliveryRepository.updateDelivery(delivery);  // Método para atualizar uma entrega existente
+        }
     }
 
-    // Encontrar uma entrega por ID
+    // Buscar uma entrega por ID
     public Optional<Delivery> findEntregaById(Long id) {
-        return deliveryRepository.findById(id);
+        return deliveryRepository.findById(id);  // Método para buscar entrega por ID
     }
 
-    // Atualizar uma entrega
+    // Atualizar uma entrega existente
     public Delivery updateEntrega(Long id, Delivery delivery) {
-        if (deliveryRepository.existsById(id)) {
-            delivery.setId(id); //Certifique-se de definir o ID para que o método save saiba que é uma atualização
-            return deliveryRepository.save(delivery);
+        // Verificar se a entrega existe antes de atualizar
+        Optional<Delivery> existingDelivery = deliveryRepository.findById(id);
+        if (existingDelivery.isPresent()) {
+            delivery.setId(id);  // Garantir que o ID seja definido para que seja atualizado corretamente
+            return deliveryRepository.updateDelivery(delivery);  // Atualizar a entrega
         }
         throw new RuntimeException("Entrega não encontrada");
     }
 
     // Retornar todas as entregas
     public List<Delivery> findAllDeliveries() {
-        return deliveryRepository.findAll();
+        return deliveryRepository.findAll();  // Método para buscar todas as entregas
     }
+
     // Trazer apenas as entregas ativas
     public List<Delivery> findActiveDeliveries() {
-        return deliveryRepository.findActiveDeliveries(); // ou findActiveDeliveries(), dependendo da abordagem
+        return deliveryRepository.findActiveDeliveries();  // Método para buscar entregas ativas
+    }
+
+    // Excluir uma entrega por ID
+    public void deleteEntrega(Long id) {
+        Optional<Delivery> delivery = deliveryRepository.findById(id);
+        if (delivery.isPresent()) {
+            deliveryRepository.deleteById(id);  // Método para deletar entrega pelo ID
+        } else {
+            throw new RuntimeException("Entrega não encontrada para exclusão");
+        }
     }
 }

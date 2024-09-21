@@ -15,7 +15,7 @@ public class StateDeliveryController {
     private StateDeliveryService stateDeliveryService;
 
     // Endpoint para retornar apenas entregas ativas
-    @GetMapping("/status-entrega-ativos")
+    @GetMapping("/entrega/ativos")
     public List<StateDelivery> getActiveStateDeliveries() {
           return stateDeliveryService.findActiveStateDelivery();
     }
