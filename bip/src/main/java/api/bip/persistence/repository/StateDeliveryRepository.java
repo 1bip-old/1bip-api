@@ -15,7 +15,7 @@ public class StateDeliveryRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<StateDelivery> findActiveStateDeliveryRepository() {
-        String sql = "SELECT * FROM state_delivery WHERE ativo = true";
+        String sql = "SELECT * FROM state_delivery WHERE ativo = true and visivel = true";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StateDelivery.class));
     }
 }
