@@ -43,7 +43,7 @@ public class DeliveryController {
 
     // Endpoint para retornar apenas entregas por status
     @GetMapping("/status/{id}")
-    public List<Delivery> getDeliveriesByStatus(@PathVariable("id") int statusId) {
-        return deliveryService.getDeliveriesByStatus(statusId);
+    public List<Delivery> getDeliveriesByStatusId(@PathVariable("id") int statusId) {
+        return deliveryService.getDeliveriesByStatusId(statusId);
     }
 }

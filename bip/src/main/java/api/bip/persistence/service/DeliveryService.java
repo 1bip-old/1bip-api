@@ -60,8 +60,8 @@ public class DeliveryService {
         }
     }
     // Trazer apenas as entregas ativas por status
-    public List<Delivery> getDeliveriesByStatus(int statusId) {
-        return deliveryRepository.findDeliveriesByStatus(statusId);  // Método para buscar entregas ativas por status
+    public List<Delivery> getDeliveriesByStatusId(int statusId) {
+        return deliveryRepository.findDeliveriesByStatusId(statusId);  // Método para buscar entregas ativas por status
     }
 
 }
