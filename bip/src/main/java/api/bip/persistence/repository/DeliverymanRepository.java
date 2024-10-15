@@ -18,8 +18,6 @@ public class DeliverymanRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    // Inserir um novo entregador
     // Inserir um novo entregador
     public Deliveryman insertDeliveryman(Deliveryman deliveryman) {
         String sql = "INSERT INTO entregador (nome, chave_pix, taxa_retorno_default, taxa_deslocamento_default, taxa_entregador_por_km_default, taxa_entregador_fixa_default, telefone_id, endereco_id, localizacao_atual_id, ativo, url_foto, token, qtd_entregas_realizadas) " +
@@ -50,7 +48,6 @@ public class DeliverymanRepository {
 
         return deliveryman;
     }
-
     // Atualizar um entregador existente
     public Deliveryman updateDeliveryman(Deliveryman deliveryman) {
         String sql = "UPDATE entregador SET nome = ?, chave_pix = ?, taxa_retorno_default = ?, taxa_deslocamento_default = ?, taxa_entregador_por_km_default = ?, taxa_entregador_fixa_default = ?, telefone_id = ?, endereco_id = ?, localizacao_atual_id = ?, ativo = ?, url_foto = ?, token = ?, qtd_entregas_realizadas = ? WHERE id = ?";
@@ -74,33 +71,29 @@ public class DeliverymanRepository {
 
         return deliveryman;
     }
+    // Excluir um entregador por ID
+    public void deleteDeliverymanById(Long id) {
+        String sql = "DELETE FROM entregador WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
     // Encontrar um entregador por ID
-    public Optional<Deliveryman> findById(Long id) {
+    public Optional<Deliveryman> getDeliverymanById(Long id) {
         String sql = "SELECT * FROM entregador WHERE id = ?";
         List<Deliveryman> entregadores = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Deliveryman.class), id);
         return entregadores.isEmpty() ? Optional.empty() : Optional.of(entregadores.get(0));
     }
-
     // Retornar todos os entregadores
-    public List<Deliveryman> findAll() {
+    public List<Deliveryman> getAllDeliverymen() {
         String sql = "SELECT * FROM entregador";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Deliveryman.class));
     }
-
     // Retornar apenas entregadores ativos
-    public List<Deliveryman> findActiveDeliverymen() {
+    public List<Deliveryman> getActiveDeliverymen() {
         String sql = "SELECT * FROM entregador WHERE ativo = true";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Deliveryman.class));
     }
-
-    // Excluir um entregador por ID
-    public void deleteById(Long id) {
-        String sql = "DELETE FROM entregador WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-    }
-
-    // Retornar entregadores ativos por status
-    public List<Deliveryman> findActiveDeliverymenByStatusId(int statusId) {
+     // Retornar entregadores ativos por status
+    public List<Deliveryman> getActiveDeliverymenByStatusId(int statusId) {
         String sql = "SELECT * FROM entregador WHERE status_id = ? AND ativo = true";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Deliveryman.class), statusId);
     }

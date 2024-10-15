@@ -59,9 +59,8 @@ public class DeliveryRepository {
         delivery.setId(keyHolder.getKey().longValue());
         return delivery;
     }
-
     // Atualizar uma entrega existente
-    public Delivery updateDelivery(Delivery delivery) {
+    public Delivery updateDeliveryById(Delivery delivery) {
         String sql = "UPDATE delivery SET status_entrega_id = ?, com_retorno = ?, codigo_pedido = ?, codigo_confirmacao = ?, estabelecimento_id = ?, destino_id = ?, entregador_id = ?, cliente_nome = ?, cliente_telefone = ?, taxa_entrega_sugerida = ?, taxa_entrega_aceita = ?, valor_cotacao = ?, cotacao_aceita_id = ?, distancia_destino_km = ?, confirmacao_entregador_id = ?, confirmacao_estabelecimento_id = ?, forma_pagamento = ?, valor_pedido = ?, valor_pago_cliente = ?, valor_troco = ?, qr_code_image = ?, copy_and_paste = ?, entrega_ativa = ?, esta_expandido = ? WHERE id = ?";
 
         jdbcTemplate.update(sql,
@@ -94,9 +93,13 @@ public class DeliveryRepository {
 
         return delivery;
     }
-
+    // Excluir uma entrega por ID
+    public void deleteDeliveryById(Long id) {
+        String sql = "DELETE FROM delivery WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
     // Encontrar uma entrega por ID
-    public Optional<Delivery> findById(Long id) {
+    public Optional<Delivery> getDeliveryById(Long id) {
         String sql = "SELECT * FROM delivery WHERE id = ?";
         try {
             Delivery delivery = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Delivery.class), id);
@@ -105,34 +108,24 @@ public class DeliveryRepository {
             return Optional.empty();
         }
     }
-
     // Verificar se uma entrega existe pelo ID
-    public boolean existsById(Long id) {
+    public boolean existsDeliveryById(Long id) {
         String sql = "SELECT COUNT(*) FROM delivery WHERE id = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id);
         return count != null && count > 0;
     }
-
     // Retornar todas as entregas
-    public List<Delivery> findAll() {
+    public List<Delivery> getAllDeliveries() {
         String sql = "SELECT * FROM delivery";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Delivery.class));
     }
-
     // Retornar apenas entregas ativas
-    public List<Delivery> findActiveDeliveries() {
+    public List<Delivery> getActiveDeliveries() {
         String sql = "SELECT * FROM delivery WHERE entrega_ativa = true";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Delivery.class));
     }
-
-    // Excluir uma entrega por ID
-    public void deleteById(Long id) {
-        String sql = "DELETE FROM delivery WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-    }
-
     // Retornar apenas entregas ativas por status
-    public List<Delivery> findDeliveriesByStatusId(int statusId) {
+    public List<Delivery> getDeliveriesByStatusId(int statusId) {
         String sql = "SELECT * FROM delivery WHERE entrega_ativa = true AND status_entrega_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Delivery.class), statusId);
     }
